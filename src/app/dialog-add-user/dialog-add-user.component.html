@@ -13,6 +13,12 @@
     </div>
     <div>
         <mat-form-field class="full-width" appearance="outline">
+            <mat-label>E-Mail</mat-label>
+            <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="email">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="full-width" appearance="outline">
             <mat-label>Birth Date</mat-label>
             <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Birth Date" [matDatepicker]="picker1">
             <mat-hint>MM/DD/YYYY</mat-hint>
@@ -38,6 +44,6 @@
     </div>
 </div>
 <div mat-dialog-actions>
-    <button [disabled]="loading" mat-button>Cancel</button>
+    <button [disabled]="loading" mat-button [mat-dialog-close]>Cancel</button>
     <button [disabled]="loading" mat-button (click)="saveUser()" cdkFocusInitial>Save</button>
 </div>

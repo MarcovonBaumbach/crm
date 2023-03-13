@@ -13,12 +13,12 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 })
 export class UserComponent {
   user = new User();
-  item$: Observable<any>;
+  user$: Observable<any>;
   coll: any;
 
-  constructor(public dialog: MatDialog, public firestore: Firestore) {
+  constructor(public dialog: MatDialog, private firestore: Firestore) {
     this.coll = collection(this.firestore, 'users');
-    this.item$ = collectionData(this.coll);
+    this.user$ = collectionData(this.coll, { idField: 'id'});
   }
 
   openDialog() {

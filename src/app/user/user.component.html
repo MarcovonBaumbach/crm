@@ -3,13 +3,13 @@
         <table>
             <tr>
                 <th>Name</th>
-                <th>ZIP Code</th>
+                <th>E-Mail</th>
                 <th>City</th>
             </tr>
-            <tr *ngFor="let item of item$ | async">
-                <td>{{ item.firstName }} {{ item.lastName }}</td>
-                <td>{{ item.zipCode }}</td>
-                <td>{{ item.city }}</td>
+            <tr *ngFor="let user of user$ | async" routerLink="{{ user.id }}">
+                <td>{{ user.firstName }} {{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.city }}</td>
             </tr>
         </table>
     </mat-card-content>
