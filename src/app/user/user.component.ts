@@ -3,7 +3,6 @@ import { collectionData, Firestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { collection } from '@firebase/firestore';
 import { Observable } from 'rxjs';
-import { User } from 'src/models/user.class';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 
 @Component({
@@ -12,7 +11,7 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  user = new User();
+
   user$: Observable<any>;
   coll: any;
 
