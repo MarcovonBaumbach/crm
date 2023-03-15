@@ -4,9 +4,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mr-16 {
     margin-right: 16px;
 }
-
 .mt-32 {
     margin-top: 32px;
+}
+
+mat-form-field {
+    padding-top: 8px;
 }
 
 .full-width {
