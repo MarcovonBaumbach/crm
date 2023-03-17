@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { collection, collectionData, docData, Firestore, getDoc } from '@angular/fire/firestore';
+import { Firestore, getDoc } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { doc } from '@firebase/firestore';
-import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'crm';
+  subPage: string = 'Dashboard';
+
+  changeHeader(param: string) {
+    this.subPage = param;
+  }
 }

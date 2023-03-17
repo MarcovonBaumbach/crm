@@ -1,0 +1,30 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<h1 mat-dialog-title>New Deal</h1>
+<div mat-dialog-content>
+    <div>
+        <button *ngIf="showButton" mat-button [matMenuTriggerFor]="userSelection">select user</button>
+        <mat-menu class="user-selection-menu" #userSelection="matMenu">
+          <button *ngFor="let user of users$ | async" mat-menu-item (click)="selectUser(user)">{{ user['email'] }}</button>
+        </mat-menu>
+        <mat-label>{{ userFirstName }} {{ userLastName }}</mat-label>
+    </div>
+    <div>
+        <mat-label>{{ userEmail }}</mat-label>
+    </div>
+    <div>
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Enter topic of the deal</mat-label>
+            <input [disabled]="loading" [(ngModel)]="deal.topic" matInput placeholder="Topic">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Enter the charged amount</mat-label>
+            <input type="number" [disabled]="loading" [(ngModel)]="deal.amount" matInput placeholder="Amount">
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button [disabled]="loading" mat-button [mat-dialog-close]>Cancel</button>
+    <button [disabled]="loading" mat-button (click)="saveDeal()" cdkFocusInitial>Save</button>
+</div>

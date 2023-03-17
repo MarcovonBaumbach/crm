@@ -20,9 +20,15 @@ export class DialogAddUserComponent {
     this.coll = collection(this.firestore, 'users');
   }
 
+  randomImg() {
+    let index = Math.floor(Math.random() * 3) + 1;
+    return `assets/img/background${index}.jpg`;
+  }
+
   saveUser() {
     this.loading = true;
     this.user.birthDate = this.birthDate.getTime();
+    this.user.img = this.randomImg();
     console.log(this.user);
 
     addDoc(this.coll, this.user.toJSON()).then((result: any) => {

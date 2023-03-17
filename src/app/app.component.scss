@@ -2,10 +2,18 @@
     height: 100vh;
 }
 
+.example-sidenav-content {
+    span {
+        color: white;
+        margin-left: 16px;
+    }
+}
+
 .menu-icon {
     cursor: pointer;
     color: white;
     transform: scale(1.5);
+
     &:hover {
         opacity: 0.8;
         transform: scale(1.4);
@@ -16,6 +24,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+
     li {
         padding-left: 16px;
         padding-right: 16px;
@@ -23,12 +32,15 @@
         display: flex;
         align-items: center;
         cursor: pointer;
+
         &:hover {
             background-color: rgba($color: #000000, $alpha: 0.25);
         }
+
         &:focus {
             outline: none;
         }
+
         mat-icon {
             margin-right: 16px;
         }
@@ -59,7 +71,8 @@
     overflow: hidden;
 }
 
-mat-toolbar, mat-toolbar-row {
+mat-toolbar,
+mat-toolbar-row {
     background-color: #141D37;
     min-height: 56px;
     height: 56px;
