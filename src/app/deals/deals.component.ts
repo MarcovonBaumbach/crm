@@ -20,6 +20,8 @@ export class DealsComponent {
   }
 
   openDialog() {
-    this.dialog.open(DialogAddDealComponent);
+    this.dialog.open(DialogAddDealComponent, {
+      width: '300px'
+    });
   }
 }

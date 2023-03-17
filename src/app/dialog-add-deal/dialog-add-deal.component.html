@@ -2,9 +2,10 @@
 <h1 mat-dialog-title>New Deal</h1>
 <div mat-dialog-content>
     <div>
-        <button *ngIf="showButton" mat-button [matMenuTriggerFor]="userSelection">select user</button>
+        <button *ngIf="showButton" mat-button [matMenuTriggerFor]="userSelection" aria-required="true">select user</button>
         <mat-menu class="user-selection-menu" #userSelection="matMenu">
-          <button *ngFor="let user of users$ | async" mat-menu-item (click)="selectUser(user)">{{ user['email'] }}</button>
+            <button *ngFor="let user of users$ | async" mat-menu-item (click)="selectUser(user)">{{ user['email']
+                }}</button>
         </mat-menu>
         <mat-label>{{ userFirstName }} {{ userLastName }}</mat-label>
     </div>
@@ -23,6 +24,7 @@
             <input type="number" [disabled]="loading" [(ngModel)]="deal.amount" matInput placeholder="Amount">
         </mat-form-field>
     </div>
+    <mat-label *ngIf="inputMissing" class="user-alert">Some entries are missing!</mat-label>
 </div>
 <div mat-dialog-actions>
     <button [disabled]="loading" mat-button [mat-dialog-close]>Cancel</button>

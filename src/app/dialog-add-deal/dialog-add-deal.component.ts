@@ -21,6 +21,7 @@ export class DialogAddDealComponent {
   coll: any;
   loading = false;
   showButton = true;
+  inputMissing = false;
 
   constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogAddDealComponent>) {
     this.coll = collection(this.firestore, 'deals');
@@ -35,13 +36,18 @@ export class DialogAddDealComponent {
   }
 
   saveDeal() {
-    this.loading = true;
-    console.log(this.deal);
+    if (this.userEmail != '' && this.deal.amount > 0 && this.deal.topic != '') {
+      this.loading = true;
+      this.deal.firstName = this.userFirstName;
+      this.deal.lastName = this.userLastName;
+      this.deal.email = this.userEmail;
+      console.log(this.deal);
 
-    addDoc(this.coll, this.deal.toJSON()).then((result: any) => {
-      console.log('neuer Deal', result);
-      this.dialogRef.close();
-    });
-    this.loading = false;
+      addDoc(this.coll, this.deal.toJSON()).then((result: any) => {
+        console.log('neuer Deal', result);
+        this.dialogRef.close();
+      });
+      this.loading = false;
+    } else this.inputMissing = true;
   }
 }

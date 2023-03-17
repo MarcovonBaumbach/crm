@@ -1,14 +1,28 @@
 <h2>Deals Started</h2>
-<div  *ngFor="let deal of deals$ | async" routerLink="{{ deal.id }}">
-    <mat-card>
+<div class="deals-container">
+    <mat-card *ngFor="let deal of deals$ | async" routerLink="{{ deal.id }}">
         <mat-card-content>
-            
+            <h2>{{ deal.topic }}</h2>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td>{{ deal.firstName }} {{ deal.lastName }}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{ deal.email }}</td>
+                </tr>
+                <tr>
+                    <td>Amount:</td>
+                    <td>{{ deal.amount }}€</td>
+                </tr>
+            </table>
         </mat-card-content>
     </mat-card>
 
 </div>
 <h2>Deals Completed</h2>
-<div></div>
+<div class="deals-container"></div>
 
 <button (click)="openDialog()" class="add-button" mat-fab color="primary" aria-label="Example icon button with a delete icon" matTooltip="New Deal" matTooltipPosition="above">
     <mat-icon>add</mat-icon>

@@ -1,5 +1,14 @@
+.deals-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .add-button {
     position: absolute;
     bottom: 56px;
     right: 56px;
+}
+
+mat-card {
+    width: fit-content;
 }
