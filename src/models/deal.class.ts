@@ -19,7 +19,7 @@ export class Deal {
             lastName: this.lastName,
             email: this.email,
             amount: this.amount,
-            topic: this.topic
+            topic: this.topic,
         };
     }
 }
