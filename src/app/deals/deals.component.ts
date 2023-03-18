@@ -4,7 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { collection } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 import { Deal } from 'src/models/deal.class';
+import { DataService } from '../data.service';
 import { DialogAddDealComponent } from '../dialog-add-deal/dialog-add-deal.component';
+import { DialogEditDealComponent } from '../dialog-edit-deal/dialog-edit-deal.component';
 
 @Component({
   selector: 'app-deals',
@@ -17,7 +19,7 @@ export class DealsComponent {
   doneDeals$: Observable<any>;
   doneColl: any;
 
-  constructor(public dialog: MatDialog, private firestore: Firestore) {
+  constructor(public dialog: MatDialog, private firestore: Firestore, private dataService: DataService) {
     this.coll = collection(this.firestore, 'deals');
     this.deals$ = collectionData(this.coll, { idField: 'id'});
     this.doneColl = collection(this.firestore, 'done-deals');
@@ -26,6 +28,14 @@ export class DealsComponent {
 
   openDialog() {
     this.dialog.open(DialogAddDealComponent, {
+      width: '300px'
+    });
+  }
+
+  editDeal(deal, dealId: string) {
+    this.dataService.deal = deal;
+    this.dataService.dealId = dealId;
+    this.dialog.open(DialogEditDealComponent, {
       width: '300px'
     });
   }

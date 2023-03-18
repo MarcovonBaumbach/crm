@@ -34,6 +34,7 @@ import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-ad
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
 import { DealsComponent } from './deals/deals.component';
 import { DialogAddDealComponent } from './dialog-add-deal/dialog-add-deal.component';
+import { DialogEditDealComponent } from './dialog-edit-deal/dialog-edit-deal.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { DialogAddDealComponent } from './dialog-add-deal/dialog-add-deal.compon
     DialogEditAddressComponent,
     DialogEditUserComponent,
     DealsComponent,
-    DialogAddDealComponent
+    DialogAddDealComponent,
+    DialogEditDealComponent
   ],
   imports: [
     BrowserModule,

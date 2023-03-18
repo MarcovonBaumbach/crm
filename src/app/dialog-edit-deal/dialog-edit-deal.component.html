@@ -1,5 +1,5 @@
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-<h1 mat-dialog-title>New Deal</h1>
+<h1 mat-dialog-title>Edit Deal</h1>
 
 <div mat-dialog-content>
     <div>
@@ -8,8 +8,8 @@
             <button *ngFor="let user of users$ | async" mat-menu-item (click)="selectUser(user)">{{ user['email']
                 }}</button>
         </mat-menu>
-        <mat-label>{{ userFirstName }} {{ userLastName }}</mat-label>
     </div>
+    <mat-label>{{ userFirstName }} {{ userLastName }}</mat-label>
     <div class="name-section">
         <mat-label>{{ userEmail }}</mat-label>
     </div>
