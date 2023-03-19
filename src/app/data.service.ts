@@ -11,5 +11,7 @@ export class DataService {
   amount: any[] = [];
   nameDealsStarted: any[] = [];
   amountDealsStarted: any[] = [];
+  monthDealDone: any[] = [];
+  amountDone: any[] = [];
   constructor() { }
 }

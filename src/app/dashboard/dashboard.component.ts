@@ -12,6 +12,8 @@ export class DashboardComponent {
   labelArray = this.dataservice.months;
   nameDealsStarted = this.dataservice.nameDealsStarted;
   amountDealsStarted = this.dataservice.amountDealsStarted;
+  monthDealDone = this.dataservice.monthDealDone;
+  amountDone = this.dataservice.amountDone;
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: this.labelArray,
@@ -57,6 +59,20 @@ export class DashboardComponent {
     responsive: true
   };
 
+  public barChartLegendDealsDone = false;
+  public barChartDataDealsDone: ChartConfiguration<'bar'>['data'] = {
+    labels: this.monthDealDone,
+    datasets: [
+      { 
+        data: this.amountDone,
+        label: 'this year',
+        backgroundColor: 'rgba(100,255,100,0.8)'
+      }
+    ]
+  };
+  public barChartOptionsDealsDone: ChartConfiguration<'bar'>['options'] = {
+    responsive: true
+  };
 
   constructor(private dataservice: DataService) {}
 

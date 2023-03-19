@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { addDoc, collectionData, deleteDoc, doc, docData, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
+import { addDoc, collectionData, deleteDoc, doc, docData, Firestore, getDoc, getDocs, setDoc } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { collection } from '@firebase/firestore';
 import { Observable } from 'rxjs';
@@ -19,16 +19,18 @@ export class DealsComponent {
   doneDeals$: Observable<any>;
   doneColl: any;
   revenue: number;
-  month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  amountDone: number;
+  month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   d = new Date();
   currentMonth: string = this.month[this.d.getMonth()];
   revenueRef = doc(this.firestore, 'revenue', this.currentMonth);
+  dealDoneRef = doc(this.firestore, 'deals-done-graph', this.currentMonth);
 
   constructor(public dialog: MatDialog, private firestore: Firestore, private dataService: DataService) {
     this.coll = collection(this.firestore, 'deals');
-    this.deals$ = collectionData(this.coll, { idField: 'id'});
+    this.deals$ = collectionData(this.coll, { idField: 'id' });
     this.doneColl = collection(this.firestore, 'done-deals');
-    this.doneDeals$ = collectionData(this.doneColl, { idField: 'id'});
+    this.doneDeals$ = collectionData(this.doneColl, { idField: 'id' });
     console.log(this.coll);
   }
 
@@ -49,7 +51,9 @@ export class DealsComponent {
   dealDone(deal, dealId: string) {
     let doneDeal = new Deal(deal);
     this.increaseRevenue(doneDeal);
+    this.increaseDoneDeal();
     this.setRevenueData();
+    this.setDealCompletedData();
     addDoc(this.doneColl, doneDeal.toJSON());
     deleteDoc(doc(this.firestore, 'deals', dealId));
   }
@@ -72,6 +76,20 @@ export class DealsComponent {
     });
   }
 
+  async increaseDoneDeal() {
+    let docSnap = await getDoc(this.dealDoneRef);
+    if (docSnap.exists()) {
+      let document = docSnap.data();
+      this.amountDone = +(document['amountDone'] + 1);
+    } else {
+      this.amountDone = 1;
+    }
+    setDoc(this.dealDoneRef, {
+      amountDone: this.amountDone,
+      month: this.currentMonth
+    });
+  }
+
   async setRevenueData() {
     this.dataService.amount = [];
     this.dataService.months = [];
@@ -82,6 +100,20 @@ export class DealsComponent {
         let document = docSnap.data();
         this.dataService.amount.push(document['amount']);
         this.dataService.months.push(document['month']);
+      }
+    }
+  }
+
+  async setDealCompletedData() {
+    this.dataService.amountDone = [];
+    this.dataService.monthDealDone = [];
+    for (let i = 0; i < this.month.length; i++) {
+      let dealDoneRef = doc(this.firestore, 'deals-done-graph', this.month[i]);
+      let docSnap = await getDoc(dealDoneRef);
+      if (docSnap.exists()) {
+        let document = docSnap.data();
+        this.dataService.amountDone.push(document['amountDone']);
+        this.dataService.monthDealDone.push(document['month']);
       }
     }
   }

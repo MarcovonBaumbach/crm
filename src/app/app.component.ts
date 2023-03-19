@@ -9,8 +9,11 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  dashboardSelected = false;
+  userSelected = false;
+  dealsSelected = false;
   title = 'crm';
-  subPage: string = 'Dashboard';
+  subPage: string = '/';
   months = [
     'January',
     'February',
@@ -29,10 +32,21 @@ export class AppComponent {
   constructor(private firestore: Firestore, private dataservice: DataService) {
     this.getRevenueData();
     this.setDealData();
+    this.setDealDoneData();
   }
 
   changeHeader(param: string) {
     this.subPage = param;
+    this.dashboardSelected = false;
+    this.userSelected = false;
+    this.dealsSelected = false;
+    if(param == 'Dashboard') {
+      this.dashboardSelected = true; 
+    } else if(param == 'User') {
+      this.userSelected = true;
+    } else if(param == 'Deals') {
+      this.dealsSelected = true;
+    }
   }
 
   async getRevenueData() {
@@ -59,5 +73,19 @@ export class AppComponent {
       this.dataservice.amountDealsStarted.push(document['amountDealsStarted']);
       this.dataservice.nameDealsStarted.push(document['nameDealsStarted']);
     });
+  }
+
+  async setDealDoneData() {
+    this.dataservice.monthDealDone = [];
+    this.dataservice.amountDone = [];
+    for (let i = 0; i < this.months.length; i++) {
+      let dealRef = doc(this.firestore, 'deals-done-graph', this.months[i]);
+      let docSnap = await getDoc(dealRef);
+      if (docSnap.exists()) {
+        let document = docSnap.data();
+        this.dataservice.amountDone.push(document['amountDone']);
+        this.dataservice.monthDealDone.push(document['month']);
+      }
+    }
   }
 }

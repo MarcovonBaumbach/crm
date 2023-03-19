@@ -12,15 +12,32 @@
   </mat-card-content>
 </mat-card>
 
-<mat-card class="deals-chart">
-  <mat-card-content>
-    <div class="headline">
-      <mat-icon>query_builder</mat-icon>
-      <h2>Deals Started</h2>
-    </div>
-    <span>this year</span>
-    <canvas baseChart [data]="barChartDataDealsStarted" [options]="barChartOptionsDealsStarted"
-      [legend]="barChartLegendDealsStarted" [type]="'bar'">
-    </canvas>
-  </mat-card-content>
-</mat-card>
+<div class="graph-container">
+
+  <mat-card class="deals-chart">
+    <mat-card-content>
+      <div class="headline">
+        <mat-icon>query_builder</mat-icon>
+        <h2>Deals Started</h2>
+      </div>
+      <span>this year</span>
+      <canvas baseChart [data]="barChartDataDealsStarted" [options]="barChartOptionsDealsStarted"
+        [legend]="barChartLegendDealsStarted" [type]="'bar'">
+      </canvas>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="deals-chart">
+    <mat-card-content>
+      <div class="headline">
+        <mat-icon>add_task</mat-icon>
+        <h2>Activities Completed</h2>
+      </div>
+      <span>this year</span>
+      <canvas baseChart [data]="barChartDataDealsDone" [options]="barChartOptionsDealsDone"
+        [legend]="barChartLegendDealsDone" [type]="'bar'">
+      </canvas>
+    </mat-card-content>
+  </mat-card>
+
+</div>

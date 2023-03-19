@@ -4,9 +4,9 @@
       <img class="logo" src="assets/img/logo.png">
     </div>
     <ul class="menu-items">
-      <li routerLink="/dashboard" (click)="changeHeader('Dashboard')"><mat-icon>fact_check</mat-icon>Dashboard</li>
-      <li routerLink="/" (click)="changeHeader('User')"><mat-icon>perm_identity</mat-icon>User</li>
-      <li routerLink="/deals" (click)="changeHeader('Deals')"><mat-icon>currency_exchange</mat-icon>Deals</li>
+      <li [class.dark]="dashboardSelected" routerLink="/dashboard" (click)="changeHeader('Dashboard')"><mat-icon>fact_check</mat-icon>Dashboard</li>
+      <li [class.dark]="userSelected" routerLink="/" (click)="changeHeader('User')"><mat-icon>perm_identity</mat-icon>User</li>
+      <li [class.dark]="dealsSelected" routerLink="/deals" (click)="changeHeader('Deals')"><mat-icon>currency_exchange</mat-icon>Deals</li>
     </ul>
   </mat-drawer>
 
