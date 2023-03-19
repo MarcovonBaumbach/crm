@@ -35,6 +35,7 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
 import { DealsComponent } from './deals/deals.component';
 import { DialogAddDealComponent } from './dialog-add-deal/dialog-add-deal.component';
 import { DialogEditDealComponent } from './dialog-edit-deal/dialog-edit-deal.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { DialogEditDealComponent } from './dialog-edit-deal/dialog-edit-deal.com
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
-    FirestoreModule
+    FirestoreModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

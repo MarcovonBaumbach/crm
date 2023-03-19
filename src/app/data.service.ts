@@ -7,5 +7,7 @@ export class DataService {
 
   dealId: string;
   deal: any;
+  months: any[] = [];
+  amount: any[] = [];
   constructor() { }
 }
