@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Firestore, getDoc } from '@angular/fire/firestore';
+import { collection, Firestore, getDoc, getDocs } from '@angular/fire/firestore';
 import { doc } from '@firebase/firestore';
 import { DataService } from './data.service';
 
@@ -28,6 +28,7 @@ export class AppComponent {
 
   constructor(private firestore: Firestore, private dataservice: DataService) {
     this.getRevenueData();
+    this.setDealData();
   }
 
   changeHeader(param: string) {
@@ -46,5 +47,17 @@ export class AppComponent {
         this.dataservice.months.push(document['month']);
       }
     }
+  }
+
+  async setDealData() {
+    this.dataservice.nameDealsStarted = [];
+    this.dataservice.amountDealsStarted = [];
+    let dealRef = collection(this.firestore, 'deals-started');
+    let querySnapshot = await getDocs(dealRef);
+    querySnapshot.forEach((doc) => {
+      let document = doc.data();
+      this.dataservice.amountDealsStarted.push(document['amountDealsStarted']);
+      this.dataservice.nameDealsStarted.push(document['nameDealsStarted']);
+    });
   }
 }

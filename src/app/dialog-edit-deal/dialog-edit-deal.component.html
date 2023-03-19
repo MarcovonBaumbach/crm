@@ -2,13 +2,6 @@
 <h1 mat-dialog-title>Edit Deal</h1>
 
 <div mat-dialog-content>
-    <div>
-        <button *ngIf="showButton" mat-button [matMenuTriggerFor]="userSelection" aria-required="true">select user</button>
-        <mat-menu class="user-selection-menu" #userSelection="matMenu">
-            <button *ngFor="let user of users$ | async" mat-menu-item (click)="selectUser(user)">{{ user['email']
-                }}</button>
-        </mat-menu>
-    </div>
     <mat-label>{{ userFirstName }} {{ userLastName }}</mat-label>
     <div class="name-section">
         <mat-label>{{ userEmail }}</mat-label>

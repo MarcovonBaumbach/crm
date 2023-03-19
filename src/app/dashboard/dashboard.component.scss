@@ -3,6 +3,20 @@
     width: 100%;
 }
 
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.deals-chart {
+    width: 50%;
+    height: auto;
+    span {
+        padding-top: 8px;
+        padding-bottom: 16px;
+        color: rgb(158, 158, 158);
+    }
+}
+
 .headline {
     display: flex;
     align-items: center;

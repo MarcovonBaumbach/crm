@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { collectionData, Firestore } from '@angular/fire/firestore';
+import { collectionData, doc, Firestore, getDocs, setDoc, updateDoc } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { addDoc, collection } from '@firebase/firestore';
 import { Deal } from 'src/models/deal.class';
+import { DataService } from '../data.service';
 
 
 @Component({
@@ -19,12 +20,14 @@ export class DialogAddDealComponent {
   userFirstName = '';
   userLastName = '';
   coll: any;
+  collDealsStarted: any;
   loading = false;
   showButton = true;
   inputMissing = false;
 
-  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogAddDealComponent>) {
+  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogAddDealComponent>, private dataservice: DataService) {
     this.coll = collection(this.firestore, 'deals');
+    this.collDealsStarted = collection(this.firestore, 'deals-started');
   }
 
   selectUser(user) {
@@ -47,7 +50,27 @@ export class DialogAddDealComponent {
         console.log('neuer Deal', result);
         this.dialogRef.close();
       });
+      this.setDealData(this.deal.email);
       this.loading = false;
     } else this.inputMissing = true;
+  }
+
+  async setDealData(email) {
+    let i = 0
+    let dealRef = collection(this.firestore, 'deals-started');
+    let querySnapshot = await getDocs(dealRef);
+    querySnapshot.forEach((doc) => {     
+      let document = doc.data();
+      let id = doc.id;
+      if(document['emailDealsStarted'] == email) {
+        this.dataservice.amountDealsStarted[i]++;
+        this.updating(id, i);       
+      }
+      i++;
+    });
+  }
+  
+  updating(id, i) {
+    updateDoc(doc(this.firestore, 'deals-started', id), {amountDealsStarted: this.dataservice.amountDealsStarted[i]});
   }
 }

@@ -9,5 +9,7 @@ export class DataService {
   deal: any;
   months: any[] = [];
   amount: any[] = [];
+  nameDealsStarted: any[] = [];
+  amountDealsStarted: any[] = [];
   constructor() { }
 }

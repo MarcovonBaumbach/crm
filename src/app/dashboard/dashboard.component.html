@@ -1,12 +1,26 @@
-<div class="headline">
-    <mat-icon>currency_exchange</mat-icon>
-    <h2>Achieved monthly revenue</h2>
-</div>
-<div style="display: block;">
-    <canvas class="revenue-chart" baseChart
-      [type]="'line'"
-      [data]="lineChartData"
-      [options]="lineChartOptions"
-      [legend]="lineChartLegend">
+<mat-card class="mb-16">
+  <mat-card-content>
+    <div class="headline">
+      <mat-icon>currency_exchange</mat-icon>
+      <h2>Achieved monthly revenue</h2>
+    </div>
+    <div style="display: block;">
+      <canvas class="revenue-chart" baseChart [type]="'line'" [data]="lineChartData" [options]="lineChartOptions"
+        [legend]="lineChartLegend">
+      </canvas>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="deals-chart">
+  <mat-card-content>
+    <div class="headline">
+      <mat-icon>query_builder</mat-icon>
+      <h2>Deals Started</h2>
+    </div>
+    <span>this year</span>
+    <canvas baseChart [data]="barChartDataDealsStarted" [options]="barChartOptionsDealsStarted"
+      [legend]="barChartLegendDealsStarted" [type]="'bar'">
     </canvas>
-</div>
+  </mat-card-content>
+</mat-card>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { doc, Firestore, getDoc } from '@angular/fire/firestore';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { DataService } from '../data.service';
 
@@ -11,6 +10,8 @@ import { DataService } from '../data.service';
 export class DashboardComponent {
   dataArray = this.dataservice.amount;
   labelArray = this.dataservice.months;
+  nameDealsStarted = this.dataservice.nameDealsStarted;
+  amountDealsStarted = this.dataservice.amountDealsStarted;
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: this.labelArray,
@@ -38,6 +39,24 @@ export class DashboardComponent {
     }
   };
   public lineChartLegend = true;
+
+
+  public barChartLegendDealsStarted = false;
+  public barChartDataDealsStarted: ChartConfiguration<'bar'>['data'] = {
+    labels: this.nameDealsStarted,
+    datasets: [
+      { 
+        data: this.amountDealsStarted,
+        label: 'this year',
+        backgroundColor: 'rgba(0,0,255,0.8)'
+      }
+    ]
+  };
+  public barChartOptionsDealsStarted: ChartConfiguration<'bar'>['options'] = {
+    indexAxis: 'y',
+    responsive: true
+  };
+
 
   constructor(private dataservice: DataService) {}
 
