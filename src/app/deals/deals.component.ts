@@ -49,6 +49,7 @@ export class DealsComponent {
   dealDone(deal, dealId: string) {
     let doneDeal = new Deal(deal);
     this.increaseRevenue(doneDeal);
+    this.setRevenueData();
     addDoc(this.doneColl, doneDeal.toJSON());
     deleteDoc(doc(this.firestore, 'deals', dealId));
   }
@@ -69,5 +70,19 @@ export class DealsComponent {
       amount: this.revenue,
       month: this.currentMonth
     });
+  }
+
+  async setRevenueData() {
+    this.dataService.amount = [];
+    this.dataService.months = [];
+    for (let i = 0; i < this.month.length; i++) {
+      let revenueRef = doc(this.firestore, 'revenue', this.month[i]);
+      let docSnap = await getDoc(revenueRef);
+      if (docSnap.exists()) {
+        let document = docSnap.data();
+        this.dataService.amount.push(document['amount']);
+        this.dataService.months.push(document['month']);
+      }
+    }
   }
 }

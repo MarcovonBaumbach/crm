@@ -35,6 +35,8 @@ export class AppComponent {
   }
 
   async getRevenueData() {
+    this.dataservice.amount = [];
+    this.dataservice.months = [];
     for (let i = 0; i < this.months.length; i++) {
       let revenueRef = doc(this.firestore, 'revenue', this.months[i]);
       let docSnap = await getDoc(revenueRef);
