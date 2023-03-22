@@ -13,9 +13,13 @@
 }
 
 .add-button {
-    position: absolute;
+    position: fixed;
     bottom: 56px;
     right: 56px;
+    @media (max-width: 900px) {
+        bottom: 16px;
+        right: 16px;
+    }
 }
 
 mat-card {

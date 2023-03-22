@@ -1,15 +1,15 @@
 <mat-card>
     <mat-card-content>
-        <table>
+        <table class="desktop">
             <tr>
                 <th>Name</th>
-                <th>E-Mail</th>
-                <th>City</th>
+                <th class="mobile-400">E-Mail</th>
+                <th class="mobile">City</th>
             </tr>
             <tr *ngFor="let user of user$ | async" routerLink="{{ user.id }}">
                 <td>{{ user.firstName }} {{ user.lastName }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.city }}</td>
+                <td class="mobile-400">{{ user.email }}</td>
+                <td class="mobile">{{ user.city }}</td>
             </tr>
         </table>
     </mat-card-content>

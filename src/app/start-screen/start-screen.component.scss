@@ -8,6 +8,10 @@
     align-items: center;
     background-color: #141D37;
     animation: fadeOut 3.1s ease-in-out;
+    img {
+        max-width: calc(100% - 32px);
+        height: auto;
+    }
 }
 
 h1 {
@@ -15,6 +19,9 @@ h1 {
     font-size: 50px;
     animation: fadeIn 1s ease-in-out;
     transform: translateY(-50px);
+    @media (max-width: 500px) {
+        font-size: 40px;
+    }
 }
 
 @keyframes fadeIn {

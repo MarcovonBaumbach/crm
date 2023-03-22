@@ -42,4 +42,20 @@ table {
     position: absolute;
     bottom: 56px;
     right: 56px;
+    @media (max-width: 900px) {
+        bottom: 16px;
+        right: 16px;
+    }
+}
+
+.mobile {
+    @media (max-width: 700px) {
+        display: none;
+    }
+}
+
+.mobile-400 {
+    @media (max-width: 400px) {
+        display: none;
+    }
 }
