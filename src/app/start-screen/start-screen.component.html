@@ -1,10 +1,6 @@
-<div class="container">
-    <div class="p-relative">
-        <img src="assets/img/start-screen.webp">
-        <span>
-            <b>Welcome back!</b><br><br>
-            Navigate through the<br>
-            menu on the left
-        </span>
-    </div>
+<div *ngIf="!pageLoaded" class="container">
+    <img src="assets/img/crm-start.webp">
+    <h1>Welcome back!</h1>
 </div>
+
+<app-main-page *ngIf="pageLoaded"></app-main-page>

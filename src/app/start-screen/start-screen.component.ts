@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-start-screen',
   templateUrl: './start-screen.component.html',
   styleUrls: ['./start-screen.component.scss']
 })
-export class StartScreenComponent {
+export class StartScreenComponent implements OnInit {
+  pageLoaded: boolean = false;
 
+  ngOnInit() {
+    setTimeout(() => {
+      this.pageLoaded = true;
+    }, 3000);
+  }
 }

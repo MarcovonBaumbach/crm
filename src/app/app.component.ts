@@ -9,12 +9,8 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  dashboardSelected = false;
-  userSelected = false;
-  dealsSelected = false;
-  newsSelected = false;
   title = 'crm';
-  subPage: string = '';
+
   months = [
     'January',
     'February',
@@ -34,23 +30,6 @@ export class AppComponent {
     this.getRevenueData();
     this.setDealData();
     this.setDealDoneData();
-  }
-
-  changeHeader(param: string) {
-    this.subPage = param;
-    this.dashboardSelected = false;
-    this.userSelected = false;
-    this.dealsSelected = false;
-    this.newsSelected = false;
-    if(param == 'Dashboard') {
-      this.dashboardSelected = true; 
-    } else if(param == 'User') {
-      this.userSelected = true;
-    } else if(param == 'Deals') {
-      this.dealsSelected = true;
-    } else if(param == 'News') {
-      this.newsSelected = true;
-    }
   }
 
   async getRevenueData() {

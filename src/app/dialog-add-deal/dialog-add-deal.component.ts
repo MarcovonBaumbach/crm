@@ -35,7 +35,6 @@ export class DialogAddDealComponent {
     this.userFirstName = user.firstName;
     this.userLastName = user.lastName;
     this.showButton = false;
-    console.log(user);
   }
 
   saveDeal() {
@@ -44,10 +43,8 @@ export class DialogAddDealComponent {
       this.deal.firstName = this.userFirstName;
       this.deal.lastName = this.userLastName;
       this.deal.email = this.userEmail;
-      console.log(this.deal);
 
-      addDoc(this.coll, this.deal.toJSON()).then((result: any) => {
-        console.log('neuer Deal', result);
+      addDoc(this.coll, this.deal.toJSON()).then(() => {
         this.dialogRef.close();
       });
       this.setDealData(this.deal.email);

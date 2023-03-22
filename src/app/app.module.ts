@@ -39,6 +39,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { StartScreenComponent } from './start-screen/start-screen.component';
 import { NewsComponent } from './news/news.component';
 import { DialogEditProfilePictureComponent } from './dialog-edit-profile-picture/dialog-edit-profile-picture.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { DialogEditProfilePictureComponent } from './dialog-edit-profile-picture
     DialogEditDealComponent,
     StartScreenComponent,
     NewsComponent,
-    DialogEditProfilePictureComponent
+    DialogEditProfilePictureComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

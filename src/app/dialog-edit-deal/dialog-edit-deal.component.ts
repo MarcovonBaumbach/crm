@@ -32,7 +32,6 @@ export class DialogEditDealComponent {
     this.userFirstName = user.firstName;
     this.userLastName = user.lastName;
     this.showButton = false;
-    console.log(user);
   }
 
   async saveDeal() {
@@ -41,7 +40,6 @@ export class DialogEditDealComponent {
       this.deal.firstName = this.userFirstName;
       this.deal.lastName = this.userLastName;
       this.deal.email = this.userEmail;
-      console.log(this.deal);
 
       let dealRef = doc(this.firestore, 'deals', this.dealId);
       await updateDoc(dealRef, this.deal.toJSON());

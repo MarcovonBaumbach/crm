@@ -1,21 +1,46 @@
 .container {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
     display: flex;
-    justify-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #141D37;
+    animation: fadeOut 3.1s ease-in-out;
 }
 
-.p-relative {
-    position: relative;
+h1 {
+    color: white;
+    font-size: 50px;
+    animation: fadeIn 1s ease-in-out;
+    transform: translateY(-50px);
+}
 
-    span {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 50px;
-        text-align: center;
-        color: white;
-        font-size: 24px;
-        line-height: 120%;
+@keyframes fadeIn {
+    0% {
+        transform: scale(0) translateY(0);
+    }
+
+    60% {
+        transform: scale(1.2) translateY(-80px);
+    }
+
+    100% {
+        transform: scale(1) translateY(-50px);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        filter: brightness(1);
+    }
+
+    60% {
+        filter: brightness(1);
+    }
+    
+    100% {
+        filter: brightness(20);
     }
 }
