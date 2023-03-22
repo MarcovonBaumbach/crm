@@ -2,15 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DealsComponent } from './deals/deals.component';
+import { NewsComponent } from './news/news.component';
+import { StartScreenComponent } from './start-screen/start-screen.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  {path: '', component: UserComponent},
+  {path: '', component: StartScreenComponent},
   {path: 'user', component: UserComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'deals', component: DealsComponent},
-  {path: ':id', component: UserDetailComponent}
+  {path: 'news', component: NewsComponent},
+  {path: 'user/:id', component: UserDetailComponent}
 ];
 
 @NgModule({

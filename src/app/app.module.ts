@@ -15,8 +15,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatSelectModule} from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
@@ -36,6 +36,9 @@ import { DealsComponent } from './deals/deals.component';
 import { DialogAddDealComponent } from './dialog-add-deal/dialog-add-deal.component';
 import { DialogEditDealComponent } from './dialog-edit-deal/dialog-edit-deal.component';
 import { NgChartsModule } from 'ng2-charts';
+import { StartScreenComponent } from './start-screen/start-screen.component';
+import { NewsComponent } from './news/news.component';
+import { DialogEditProfilePictureComponent } from './dialog-edit-profile-picture/dialog-edit-profile-picture.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { NgChartsModule } from 'ng2-charts';
     DialogEditUserComponent,
     DealsComponent,
     DialogAddDealComponent,
-    DialogEditDealComponent
+    DialogEditDealComponent,
+    StartScreenComponent,
+    NewsComponent,
+    DialogEditProfilePictureComponent
   ],
   imports: [
     BrowserModule,

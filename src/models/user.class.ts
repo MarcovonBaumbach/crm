@@ -7,16 +7,18 @@ export class User {
     zipCode: number;
     city: string;
     img: string;
+    picture: string;
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';
         this.lastName = obj ? obj.lastName : '';
         this.email = obj ? obj.email : '';
-        this.birthDate = obj ? obj.birthDate: '';
-        this.street = obj ? obj.street: '';
-        this.zipCode = obj ? obj.zipCode: '';
-        this.city = obj ? obj.city: '';
-        this.img = obj ? obj.img: '';
+        this.birthDate = obj ? obj.birthDate : '';
+        this.street = obj ? obj.street : '';
+        this.zipCode = obj ? obj.zipCode : '';
+        this.city = obj ? obj.city : '';
+        this.img = obj ? obj.img : '';
+        this.picture = obj ? obj.picture : 'profile1.png';
     }
 
     public toJSON() {
@@ -28,7 +30,8 @@ export class User {
             street: this.street,
             zipCode: this.zipCode,
             city: this.city,
-            img: this.img
+            img: this.img,
+            picture: this.picture
         };
     }
 }

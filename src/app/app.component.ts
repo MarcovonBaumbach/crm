@@ -12,8 +12,9 @@ export class AppComponent {
   dashboardSelected = false;
   userSelected = false;
   dealsSelected = false;
+  newsSelected = false;
   title = 'crm';
-  subPage: string = '/';
+  subPage: string = '';
   months = [
     'January',
     'February',
@@ -40,12 +41,15 @@ export class AppComponent {
     this.dashboardSelected = false;
     this.userSelected = false;
     this.dealsSelected = false;
+    this.newsSelected = false;
     if(param == 'Dashboard') {
       this.dashboardSelected = true; 
     } else if(param == 'User') {
       this.userSelected = true;
     } else if(param == 'Deals') {
       this.dealsSelected = true;
+    } else if(param == 'News') {
+      this.newsSelected = true;
     }
   }
 

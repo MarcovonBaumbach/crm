@@ -15,6 +15,7 @@ export class DashboardComponent {
   monthDealDone = this.dataservice.monthDealDone;
   amountDone = this.dataservice.amountDone;
 
+  public lineChartLegend = true;
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: this.labelArray,
     datasets: [
@@ -40,7 +41,6 @@ export class DashboardComponent {
       }
     }
   };
-  public lineChartLegend = true;
 
 
   public barChartLegendDealsStarted = false;
@@ -66,7 +66,7 @@ export class DashboardComponent {
       { 
         data: this.amountDone,
         label: 'this year',
-        backgroundColor: 'rgba(100,255,100,0.8)'
+        backgroundColor: 'rgba(0,190,0,0.8)'
       }
     ]
   };

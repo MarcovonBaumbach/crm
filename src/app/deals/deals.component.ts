@@ -31,7 +31,6 @@ export class DealsComponent {
     this.deals$ = collectionData(this.coll, { idField: 'id' });
     this.doneColl = collection(this.firestore, 'done-deals');
     this.doneDeals$ = collectionData(this.doneColl, { idField: 'id' });
-    console.log(this.coll);
   }
 
   openDialog() {

@@ -8,8 +8,9 @@
         </button>
         <mat-menu #menuHeader="matMenu" xPosition="before">
             <button mat-menu-item (click)="editUserHeader()">Edit</button>
+            <button mat-menu-item (click)="editProfilePicture()">Picture</button>
         </mat-menu>
-        <img src="assets/img/profile1.png">
+        <img (click)="editProfilePicture()" src="assets/img/{{ user.picture }}">
         <div class="user-details">
             <h2>{{ user.firstName }} {{ user.lastName }}</h2>
             {{ user.email }}

@@ -1,0 +1,8 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<h1 mat-dialog-title>Choose a profile picture</h1>
+<div mat-dialog-content>
+    <img *ngFor="let picture of pictures" (click)="saveUser(picture)" src="assets/img/{{ picture }}">
+</div>
+<div mat-dialog-actions>
+    <button [disabled]="loading" mat-button [mat-dialog-close]>Cancel</button>
+</div>

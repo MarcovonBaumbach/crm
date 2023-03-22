@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { doc } from '@firebase/firestore';
 import { User } from 'src/models/user.class';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
+import { DialogEditProfilePictureComponent } from '../dialog-edit-profile-picture/dialog-edit-profile-picture.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
@@ -35,8 +36,15 @@ export class UserDetailComponent implements OnInit {
     this.userRef = doc(this.firestore, 'users', this.userId);
     let docSnapshot = await getDoc(this.userRef);
     this.user = new User(docSnapshot.data());
-    console.log(this.user);
+  }
 
+  editProfilePicture() {
+    const dialog = this.dialog.open(DialogEditProfilePictureComponent);
+    dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
+    dialog.afterClosed().subscribe(() => {
+      this.getUser();
+    });
   }
 
   editUserHeader() {

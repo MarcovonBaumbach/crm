@@ -1,0 +1,12 @@
+<h2>Get your daily News</h2>
+<div class="news-container">
+    <mat-card *ngFor="let article of articles" class="article-container">
+        <mat-card-content *ngIf="!article['description'].includes('http')">
+            <h3><b>{{ article['title'] }}</b></h3>
+            <img src="{{ article['urlToImage'] }}">
+            <span *ngIf="article['author'] != null"><i>Author: {{ article['author'] }}</i></span>
+            <span>{{ article['description'] }}</span>
+            <a href="{{ article['url'] }}" target="_blank">click to read full article</a>
+        </mat-card-content>
+    </mat-card>
+</div>
