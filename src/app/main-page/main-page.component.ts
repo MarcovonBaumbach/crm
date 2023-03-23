@@ -12,6 +12,10 @@ export class MainPageComponent {
   newsSelected = false;
   subPage: string = 'Dashboard';
 
+  /**
+   * change the header according to the selected page
+   * @param param 
+   */
   changeHeader(param: string) {
     this.subPage = param;
     this.dashboardSelected = false;

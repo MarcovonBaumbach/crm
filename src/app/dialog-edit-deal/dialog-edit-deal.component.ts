@@ -27,6 +27,10 @@ export class DialogEditDealComponent {
     this.coll = collection(this.firestore, 'deals');
   }
 
+   /**
+   * load user information for the selected deal you want to edit
+   * @param user
+   */
   selectUser(user) {
     this.userEmail = user.email;
     this.userFirstName = user.firstName;
@@ -34,8 +38,11 @@ export class DialogEditDealComponent {
     this.showButton = false;
   }
 
+  /**
+   * update edited deal information on firestore 
+   */
   async saveDeal() {
-    if (this.userEmail != '' && this.deal.amount > 0 && this.deal.topic != '') {
+    if (this.deal.amount > 0 && this.deal.topic != '') {
       this.loading = true;
       this.deal.firstName = this.userFirstName;
       this.deal.lastName = this.userLastName;

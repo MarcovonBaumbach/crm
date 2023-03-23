@@ -23,13 +23,17 @@ export class DialogAddDealComponent {
   collDealsStarted: any;
   loading = false;
   showButton = true;
-  inputMissing = false;
+  inputMissing: boolean = false;
 
   constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogAddDealComponent>, private dataservice: DataService) {
     this.coll = collection(this.firestore, 'deals');
     this.collDealsStarted = collection(this.firestore, 'deals-started');
   }
 
+  /**
+   * load information for the selected user you want to start a deal with
+   * @param user
+   */
   selectUser(user) {
     this.userEmail = user.email;
     this.userFirstName = user.firstName;
@@ -37,14 +41,17 @@ export class DialogAddDealComponent {
     this.showButton = false;
   }
 
-  saveDeal() {
+  /**
+   * save deal information on firestore
+   */
+  async saveDeal() {
     if (this.userEmail != '' && this.deal.amount > 0 && this.deal.topic != '') {
       this.loading = true;
       this.deal.firstName = this.userFirstName;
       this.deal.lastName = this.userLastName;
       this.deal.email = this.userEmail;
 
-      addDoc(this.coll, this.deal.toJSON()).then(() => {
+      await addDoc(this.coll, this.deal.toJSON()).then(() => {
         this.dialogRef.close();
       });
       this.setDealData(this.deal.email);
@@ -52,7 +59,11 @@ export class DialogAddDealComponent {
     } else this.inputMissing = true;
   }
 
-  async setDealData(email) {
+  /**
+   * set deal data on dataservice
+   * @param email 
+   */
+  async setDealData(email: string) {
     let i = 0
     let dealRef = collection(this.firestore, 'deals-started');
     let querySnapshot = await getDocs(dealRef);
@@ -66,8 +77,13 @@ export class DialogAddDealComponent {
       i++;
     });
   }
-  
-  updating(id, i) {
-    updateDoc(doc(this.firestore, 'deals-started', id), {amountDealsStarted: this.dataservice.amountDealsStarted[i]});
+
+  /**
+   * update doc on firestore for deals started graph
+   * @param id 
+   * @param i 
+   */
+  async updating(id, i) {
+    await updateDoc(doc(this.firestore, 'deals-started', id), {amountDealsStarted: this.dataservice.amountDealsStarted[i]});
   }
 }

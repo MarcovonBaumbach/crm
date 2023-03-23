@@ -12,18 +12,24 @@ export class DialogEditAddressComponent {
   user: User;
   userId: string;
   loading: boolean = false;
+  inputMissing: boolean = false;
 
   constructor(
-    private firestore: Firestore, 
+    private firestore: Firestore,
     public dialogRef: MatDialogRef<DialogEditAddressComponent>) {
 
   }
 
+  /**
+   * save changes to users collection on firestore
+   */
   async saveUser() {
-    this.loading = true;
-    let userRef = doc(this.firestore, 'users', this.userId);
-    await updateDoc(userRef, this.user.toJSON());
-    this.dialogRef.close();
-    this.loading = false;
+    if (this.user.city != '' && this.user.zipCode > 0 && this.user.street != '') {
+      this.loading = true;
+      let userRef = doc(this.firestore, 'users', this.userId);
+      await updateDoc(userRef, this.user.toJSON());
+      this.dialogRef.close();
+      this.loading = false;
+    } else this.inputMissing = true;
   }
 }

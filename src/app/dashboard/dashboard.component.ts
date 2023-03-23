@@ -15,6 +15,9 @@ export class DashboardComponent {
   monthDealDone = this.dataservice.monthDealDone;
   amountDone = this.dataservice.amountDone;
 
+  /**
+   * diagram for monthly revenue
+   */
   public lineChartLegend = true;
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: this.labelArray,
@@ -42,12 +45,14 @@ export class DashboardComponent {
     }
   };
 
-
+  /**
+   * diagram for deals started this year
+   */
   public barChartLegendDealsStarted = false;
   public barChartDataDealsStarted: ChartConfiguration<'bar'>['data'] = {
     labels: this.nameDealsStarted,
     datasets: [
-      { 
+      {
         data: this.amountDealsStarted,
         label: 'this year',
         backgroundColor: 'rgba(0,0,255,0.8)'
@@ -59,11 +64,15 @@ export class DashboardComponent {
     responsive: true
   };
 
+
+  /**
+  * diagram for deals closed this year
+  */
   public barChartLegendDealsDone = false;
   public barChartDataDealsDone: ChartConfiguration<'bar'>['data'] = {
     labels: this.monthDealDone,
     datasets: [
-      { 
+      {
         data: this.amountDone,
         label: 'this year',
         backgroundColor: 'rgba(0,190,0,0.8)'
@@ -74,6 +83,6 @@ export class DashboardComponent {
     responsive: true
   };
 
-  constructor(private dataservice: DataService) {}
+  constructor(private dataservice: DataService) { }
 
 }

@@ -17,6 +17,7 @@
             <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="City">
         </mat-form-field>
     </div>
+    <mat-label *ngIf="inputMissing" class="user-alert">Please fill out all fields!</mat-label>
 </div>
 <div mat-dialog-actions>
     <button [disabled]="loading" mat-button [mat-dialog-close]>Cancel</button>

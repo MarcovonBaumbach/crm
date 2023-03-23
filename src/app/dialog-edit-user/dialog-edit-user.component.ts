@@ -14,21 +14,37 @@ export class DialogEditUserComponent {
   birthDate: Date;
   startDate = new Date(1920, 0, 1);
   loading: boolean = false;
+  inputMissing: boolean = false;
 
   constructor(
-    private firestore: Firestore, 
+    private firestore: Firestore,
     public dialogRef: MatDialogRef<DialogEditUserComponent>) {
 
   }
 
+  /**
+   * update edited user information on firestore
+   */
   async saveUser() {
-    this.loading = true;
-    if(this.birthDate){
-      this.user.birthDate = this.birthDate.getTime();
-    }
-    let userRef = doc(this.firestore, 'users', this.userId);
-    await updateDoc(userRef, this.user.toJSON());
-    this.dialogRef.close();
-    this.loading = false;
+    if (this.saveUserValidation()) {
+      this.loading = true;
+      if (this.birthDate) {
+        this.user.birthDate = this.birthDate.getTime();
+      }
+      let userRef = doc(this.firestore, 'users', this.userId);
+      await updateDoc(userRef, this.user.toJSON());
+      this.dialogRef.close();
+      this.loading = false;
+    } else this.inputMissing = true;
+  }
+
+  /**
+   * validating the input fields
+   */
+  saveUserValidation() {
+    return (this.user.firstName != ''
+      && this.user.lastName != ''
+      && this.user.email != ''
+    );
   }
 }

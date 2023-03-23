@@ -25,6 +25,9 @@ export class UserDetailComponent implements OnInit {
     ) {
     }
 
+  /**
+   * getting firestore document id of current user via url route 
+   */
   ngOnInit() {
     this.route.paramMap.subscribe(param => {
       this.userId = param.get('id');
@@ -32,12 +35,18 @@ export class UserDetailComponent implements OnInit {
     })
   }
 
+  /**
+   * getting firestore data of current user
+   */
   async getUser() { 
     this.userRef = doc(this.firestore, 'users', this.userId);
     let docSnapshot = await getDoc(this.userRef);
     this.user = new User(docSnapshot.data());
   }
 
+  /**
+   * open dialog to select a new profile image
+   */
   editProfilePicture() {
     const dialog = this.dialog.open(DialogEditProfilePictureComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
@@ -47,6 +56,9 @@ export class UserDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * open dialog to change user information
+   */
   editUserHeader() {
     const dialog = this.dialog.open(DialogEditUserComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
@@ -56,6 +68,9 @@ export class UserDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * open dialog to change user address
+   */
   editUserComponent() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());

@@ -33,12 +33,20 @@ export class DealsComponent {
     this.doneDeals$ = collectionData(this.doneColl, { idField: 'id' });
   }
 
+  /**
+   * opens a dialog to ad a new deal
+   */
   openDialog() {
     this.dialog.open(DialogAddDealComponent, {
       width: '300px'
     });
   }
 
+  /**
+   * opens a dialog to edit the selected deal
+   * @param {any} deal 
+   * @param {string} dealId - id of the document on firestore
+   */
   editDeal(deal, dealId: string) {
     this.dataService.deal = deal;
     this.dataService.dealId = dealId;
@@ -47,6 +55,11 @@ export class DealsComponent {
     });
   }
 
+  /**
+   * moves the selected deal into the deal done category
+   * @param {any} deal 
+   * @param dealId - id of the document on firestore
+   */
   dealDone(deal, dealId: string) {
     let doneDeal = new Deal(deal);
     this.increaseRevenue(doneDeal);
@@ -57,10 +70,19 @@ export class DealsComponent {
     deleteDoc(doc(this.firestore, 'deals', dealId));
   }
 
+  /**
+   * deletes the deal from deals collection on firestore
+   * @param collection - the selected collection on firestore
+   * @param dealId - id of the document on firestore 
+   */
   deleteDeal(collection: string, dealId: string) {
     deleteDoc(doc(this.firestore, collection, dealId));
   }
 
+  /**
+   * increase the monthly revenue for the revenue graph, when a deal is done
+   * @param {any} doneDeal 
+   */
   async increaseRevenue(doneDeal) {
     let docSnap = await getDoc(this.revenueRef);
     if (docSnap.exists()) {
@@ -75,6 +97,9 @@ export class DealsComponent {
     });
   }
 
+  /**
+   * increase the monthly amount of done deals for activities completed graph, when a deal is done
+   */
   async increaseDoneDeal() {
     let docSnap = await getDoc(this.dealDoneRef);
     if (docSnap.exists()) {
@@ -89,6 +114,9 @@ export class DealsComponent {
     });
   }
 
+  /**
+   * save revenue data on dataservice for revenue graph
+   */
   async setRevenueData() {
     this.dataService.amount = [];
     this.dataService.months = [];
@@ -103,6 +131,9 @@ export class DealsComponent {
     }
   }
 
+  /**
+   * save deal done data on dataservice for activities completed graph
+   */
   async setDealCompletedData() {
     this.dataService.amountDone = [];
     this.dataService.monthDealDone = [];

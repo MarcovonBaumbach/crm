@@ -30,6 +30,10 @@ export class DialogEditProfilePictureComponent {
 
   }
 
+  /**
+   * update profile picture for selected user
+   * @param picture
+   */
   async saveUser(picture: string) {
     this.loading = true;
     this.user.picture = picture;

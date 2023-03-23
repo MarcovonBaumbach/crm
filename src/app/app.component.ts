@@ -32,6 +32,9 @@ export class AppComponent {
     this.setDealDoneData();
   }
 
+  /**
+   * save revenue data from firestore in dataservice for use in the revenue graph
+   */
   async getRevenueData() {
     this.dataservice.amount = [];
     this.dataservice.months = [];
@@ -46,6 +49,9 @@ export class AppComponent {
     }
   }
 
+  /**
+   * save data of started deals from firestore in dataservice for use in the deals started graph
+   */
   async setDealData() {
     this.dataservice.nameDealsStarted = [];
     this.dataservice.amountDealsStarted = [];
@@ -58,6 +64,9 @@ export class AppComponent {
     });
   }
 
+  /**
+   * save data of done deals from firestore in dataservice for use in the activities completed graph
+   */
   async setDealDoneData() {
     this.dataservice.monthDealDone = [];
     this.dataservice.amountDone = [];

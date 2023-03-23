@@ -3,8 +3,8 @@
     <mat-card *ngFor="let article of articles" class="article-container">
         <mat-card-content *ngIf="article['description'] != null && !article['description'].includes('http')">
             <h3><b>{{ article['title'] }}</b></h3>
-            <img src="{{ article['urlToImage'] }}">
-            <span *ngIf="article['author'] != null"><i>Author: {{ article['author'] }}</i></span>
+            <img src="{{ article['image'] }}">
+            <span *ngIf="article['publishedAt'] != null"><i>Published: {{ article['publishedAt'].split('T')[0] }}</i></span>
             <span>{{ article['description'] }}</span>
             <a href="{{ article['url'] }}" target="_blank">click to read full article</a>
         </mat-card-content>
